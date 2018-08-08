@@ -7,7 +7,7 @@ import os
 import keras
 
 class cbow_trainer:
-    def train(self, model_config, pairs, vocab_size):
+    def train(self, model_config, pairs, vocab_size, word2id):
         if model_config['isGPU']:
             # Run on GPU support
             os.environ["CUDA_VISIBLE_DEVICES"] = "2"
@@ -35,7 +35,7 @@ class cbow_trainer:
             print('Epoch:', epoch, '\tLoss:', loss)
             print()
 
-        return cbow
+        return cbow, cbow.get_weights()[0]
 
 
         # weights = cbow.get_weights()[0]

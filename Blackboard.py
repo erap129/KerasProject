@@ -37,7 +37,7 @@ class Blackboard(object):
             print("Loaded model from disk")
         else:
             start = time.time()
-            model = self.trainer.train(self.trainer, model_config, pairs, vocab_size)
+            model, embedding = self.trainer.train(self.trainer, model_config, pairs, vocab_size, word2id)
             end = time.time()
             self.train_time = end-start
         if model_config['save_weights']:
@@ -48,7 +48,7 @@ class Blackboard(object):
             model.save_weights(model_config['save_weights_filename'])
             print("Saved model and weights to disk")
         start = time.time()
-        pearson_correlation, pearson_two_tailed_p_value, spearmon_correlation, spearmon_two_tailed_p_value = self.evaluator.evaluate(self.evaluator, model_config, model.get_weights()[0], word2id)
+        pearson_correlation, pearson_two_tailed_p_value, spearmon_correlation, spearmon_two_tailed_p_value = self.evaluator.evaluate(self.evaluator, model_config, embedding, word2id)
         end = time.time()
         self.evaluate_time = end - start
         correlations = [pearson_correlation, pearson_two_tailed_p_value, spearmon_correlation, spearmon_two_tailed_p_value]

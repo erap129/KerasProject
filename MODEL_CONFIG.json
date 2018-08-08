@@ -4,7 +4,7 @@
   "configuration_repeat" : 0,
   "isGPU" : false,
   "preprocessor" : "preprocessor",
-  "trainer" : "cbow_trainer",
+  "trainer" : "rand_proj_trainer",
   "evaluator" : "evaluator",
   "signer" : "signer",
   "corpus_filename" : "really_small_wiki_sample.txt",
