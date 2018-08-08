@@ -1,0 +1,4 @@
+dataset,window_size,epochs,number_of_dimensions_in_hidden_layer,selected_optimizer,pearson_correlation,pearson_two_tailed_p_value,spearmon_correlation,spearmon_two_tailed_p_value
+rg,2,10,50,rmsprop,0.005405403252592986,0.9659132086803949,0.0103011645624043,0.935090987478291
+dataset,window_size,epochs,number_of_dimensions_in_hidden_layer,selected_optimizer,pearson_correlation,pearson_two_tailed_p_value,spearmon_correlation,spearmon_two_tailed_p_value
+rg,2,10,50,rmsprop,0.07205493966462553,0.5684092083034182,0.11882750606060677,0.3457958985915939

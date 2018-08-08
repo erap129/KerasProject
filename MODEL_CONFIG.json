@@ -1,0 +1,22 @@
+{
+  "start_time" : "00:00:00",
+  "configuration_number" : 0,
+  "configuration_repeat" : 0,
+  "isGPU" : false,
+  "preprocessor" : "preprocessor",
+  "trainer" : "cbow_trainer",
+  "evaluator" : "evaluator",
+  "signer" : "signer",
+  "corpus_filename" : "really_small_wiki_sample.txt",
+  "dataset" : "rg",
+  "window_size" : 2,
+  "epochs" : 10,
+  "number_of_dimensions_in_hidden_layer" : 50,
+  "selected_optimizer" : "rmsprop",
+  "save_weights": false,
+  "save_weights_filename": "test_weights_1",
+  "save_model_filename": "test_model_1",
+  "load_weights": false,
+  "load_weights_filename": "test_weights_1",
+  "load_model_filename": "test_model_1"
+}
