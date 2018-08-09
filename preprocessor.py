@@ -85,9 +85,6 @@ class preprocessor:
         print('Vocabulary Size:', vocab_size)
         print('Vocabulary Sample:', list(word2id.items())[:10])
 
-        result_pairs = []
-        for x, y in generate_context_word_pairs(corpus=wids, window_size=model_config['window_size'], vocab_size=vocab_size):
-            result_pairs.append([x, y])
         # returns the word-window pairs, and the mapping between word and integer as well (for later use by evaluator)
-        return result_pairs, word2id, vocab_size
+        return wids, word2id
 

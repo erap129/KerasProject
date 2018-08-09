@@ -11,7 +11,7 @@ asylum,fruit,-5.0
 asylum,monk,-5.0
 graveyard,madhouse,-5.0
 glass,magician,-5.0
-boy,rooster,-0.1375252094378232
+boy,rooster,-1.3767015933990479
 cushion,jewel,-5.0
 monk,slave,-5.0
 asylum,cemetery,-5.0
@@ -19,10 +19,10 @@ coast,forest,-5.0
 grin,lad,-5.0
 shore,woodland,-5.0
 monk,oracle,-5.0
-boy,sage,-1.862976018158109
+boy,sage,0.31807638704776764
 automobile,cushion,-5.0
 mound,shore,-5.0
-lad,wizard,1.0855377303008862
+lad,wizard,-0.41359957307577133
 forest,graveyard,-5.0
 food,rooster,-5.0
 cemetery,woodland,-5.0
@@ -30,7 +30,7 @@ shore,voyage,-5.0
 bird,woodland,-5.0
 coast,hill,-5.0
 furnace,implement,-5.0
-crane,rooster,-1.0456281643500132
+crane,rooster,-0.07921341806650162
 hill,woodland,-5.0
 car,journey,-5.0
 cemetery,mound,-5.0
@@ -38,9 +38,9 @@ glass,jewel,-5.0
 magician,oracle,-5.0
 crane,implement,-5.0
 brother,lad,-5.0
-sage,wizard,0.08284004900333652
-oracle,sage,0.9819261503161092
-bird,crane,-2.158036824456271
+sage,wizard,0.6961783021688461
+oracle,sage,0.6524541229009628
+bird,crane,0.19896334037184715
 bird,cock,-5.0
 food,fruit,-5.0
 brother,monk,-5.0
@@ -58,7 +58,7 @@ coast,shore,-5.0
 forest,woodland,-5.0
 implement,tool,-5.0
 cock,rooster,-5.0
-boy,lad,2.3256360947013355
+boy,lad,-1.286177635192871
 cushion,pillow,-5.0
 cemetery,graveyard,-5.0
 automobile,car,-5.0

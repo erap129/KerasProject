@@ -24,7 +24,7 @@ class Blackboard(object):
         self.signer = getattr(importlib.import_module(model_config['signer']),
                                  model_config['signer'])
         start = time.time()
-        pairs, word2id, vocab_size = self.preprocessor.preprocess(self.preprocessor, model_config)
+        wids, word2id = self.preprocessor.preprocess(self.preprocessor, model_config)
         end = time.time()
         self.preprocess_time = end-start
         if model_config['load_weights']:
@@ -37,7 +37,7 @@ class Blackboard(object):
             print("Loaded model from disk")
         else:
             start = time.time()
-            model, embedding = self.trainer.train(self.trainer, model_config, pairs, vocab_size, word2id)
+            model, embedding = self.trainer.train(self.trainer, model_config, wids, word2id)
             end = time.time()
             self.train_time = end-start
         if model_config['save_weights']:
@@ -56,19 +56,38 @@ class Blackboard(object):
         self.signer.sign(self.signer, model_config, correlations, times)
 
 
-
-if __name__ == '__main__':
+def check_input_size_experiment():
     bb = Blackboard()
     with open('MODEL_CONFIG.json') as f:
         model_config = json.load(f)
         now = datetime.datetime.now()
-        model_config['start_time'] = now.strftime("%Y-%m-%d %H:%M")
-        for configuration_number in range(1,4):
+        sizes = ['14K', '700K', '2.5MB', '5MB']
+        model_config['start_time'] = 'input size experiment- ' + now.strftime("%Y-%m-%d %H:%M")
+        for configuration_number in range(4):
             model_config['configuration_number'] = configuration_number
-            model_config['number_of_dimensions_in_hidden_layer'] = 5*configuration_number
-            for i in range(1,4):
+            model_config['corpus_filename'] = sizes[configuration_number] + '_sample.txt'
+            for i in range(1, 4):
                 model_config['configuration_repeat'] = i
                 bb.run_pipeline(model_config)
+
+def check_hidden_layer_size_experiment():
+    bb = Blackboard()
+    with open('MODEL_CONFIG.json') as f:
+        model_config = json.load(f)
+        now = datetime.datetime.now()
+        model_config['start_time'] = 'hidden layer size experiment- ' + now.strftime("%Y-%m-%d %H:%M")
+        for configuration_number in range(1, 4):
+            model_config['configuration_number'] = configuration_number
+            model_config['number_of_dimensions_in_hidden_layer'] = 5 * configuration_number
+            for i in range(1, 4):
+                model_config['configuration_repeat'] = i
+                bb.run_pipeline(model_config)
+
+
+if __name__ == '__main__':
+   check_hidden_layer_size_experiment()
+   check_input_size_experiment()
+
 
 
 

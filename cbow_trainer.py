@@ -1,13 +1,34 @@
 import keras.backend as K
 from keras.models import Sequential
 from keras.layers import Dense, Embedding, Lambda
+from keras.utils import np_utils
+from keras.preprocessing import sequence
 from keras.models import model_from_json
 import tensorflow as tf
 import os
 import keras
 
+def generate_context_word_pairs(corpus, vocab_size, window_size=2):
+    context_length = window_size * 2
+    for words in corpus:
+        sentence_length = len(words)
+        for index, word in enumerate(words):
+            context_words = []
+            label_word = []
+            start = index - window_size
+            end = index + window_size + 1
+            context_words.append([words[i]
+                                  for i in range(start, end)
+                                  if 0 <= i < sentence_length
+                                  and i != index])
+            label_word.append(word)
+            x = sequence.pad_sequences(context_words, maxlen=context_length)
+            y = np_utils.to_categorical(label_word, vocab_size)
+            yield (x, y)
+
 class cbow_trainer:
-    def train(self, model_config, pairs, vocab_size, word2id):
+    def train(self, model_config, wids, word2id):
+        vocab_size = len(word2id.values())
         if model_config['isGPU']:
             # Run on GPU support
             os.environ["CUDA_VISIBLE_DEVICES"] = "2"
@@ -26,7 +47,8 @@ class cbow_trainer:
         for epoch in range(1, 10):
             loss = 0.
             i = 0
-            for x, y in pairs:
+            for x, y in generate_context_word_pairs(corpus=wids, window_size=model_config['window_size'],
+                                                    vocab_size=vocab_size):
                 i += 1
                 loss += cbow.train_on_batch(x, y)
                 if i % 100 == 0:
@@ -36,8 +58,3 @@ class cbow_trainer:
             print()
 
         return cbow, cbow.get_weights()[0]
-
-
-        # weights = cbow.get_weights()[0]
-        # weights = weights[1:]
-        # print(weights.shape)
