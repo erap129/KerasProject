@@ -47,6 +47,9 @@ class cbow_trainer:
             predictions = Dense(vocab_size, activation='softmax')(mean)
             cbow = Model(inputs=input_context, outputs=predictions)
             cbow.compile(loss='categorical_crossentropy', optimizer='rmsprop')
+            print('list of layers in cbow:')
+            for layer in cbow.layers:
+                print(layer, layer.trainable)
         else:
             cbow = Sequential()
             cbow.add(Embedding(input_dim=vocab_size, output_dim=model_config['number_of_dimensions_in_hidden_layer'], input_length=model_config['window_size']*2))

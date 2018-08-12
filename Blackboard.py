@@ -104,9 +104,9 @@ def split_embedding_layer_experiment():
 
 
 if __name__ == '__main__':
-    split_embedding_layer_experiment()
+    # split_embedding_layer_experiment()
     # check_hidden_layer_size_experiment()
-    # check_input_size_experiment()
+    check_input_size_experiment()
 
 
 
