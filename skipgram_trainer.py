@@ -81,8 +81,8 @@ class skipgram_trainer:
             loss = model.train_on_batch([arr_1, arr_2], arr_3)
             if cnt % 100 == 0:
                 print("Iteration {}, loss={}".format(cnt, loss))
-            if cnt % 10000 == 0:
-                sim_cb.run_sim()
+            # if cnt % 10000 == 0:
+            #     sim_cb.run_sim()
 
         return model, model.get_weights()[0]
 

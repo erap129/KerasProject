@@ -62,7 +62,8 @@ def check_input_size_experiment():
         model_config = json.load(f)
         now = datetime.datetime.now()
         sizes = ['14K', '700K', '2.5MB', '5MB']
-        model_config['start_time'] = 'input size experiment- ' + now.strftime("%Y-%m-%d %H:%M")
+        model_config['experiment'] = 'input size experiment'
+        model_config['start_time'] = now.strftime("%Y-%m-%d %H:%M")
         for configuration_number in range(4):
             model_config['configuration_number'] = configuration_number
             model_config['corpus_filename'] = sizes[configuration_number] + '_sample.txt'
@@ -75,18 +76,38 @@ def check_hidden_layer_size_experiment():
     with open('MODEL_CONFIG.json') as f:
         model_config = json.load(f)
         now = datetime.datetime.now()
-        model_config['start_time'] = 'hidden layer size experiment- ' + now.strftime("%Y-%m-%d %H:%M")
+        model_config['experiment'] = 'hidden layer size'
+        model_config['start_time'] = now.strftime("%Y-%m-%d %H:%M")
         for configuration_number in range(1, 4):
             model_config['configuration_number'] = configuration_number
-            model_config['number_of_dimensions_in_hidden_layer'] = 5 * configuration_number
+            model_config['number_of_dimensions_in_hidden_layer'] = 10 * configuration_number
             for i in range(1, 4):
+                model_config['configuration_repeat'] = i
+                bb.run_pipeline(model_config)
+
+def split_embedding_layer_experiment():
+    bb = Blackboard()
+    with open('MODEL_CONFIG.json') as f:
+        model_config = json.load(f)
+        now = datetime.datetime.now()
+        model_config['experiment'] = 'split embedding layer experiment'
+        model_config['start_time'] = now.strftime("%Y-%m-%d %H:%M")
+        for configuration_number in range(1, 3):
+            model_config['configuration_number'] = configuration_number
+            if configuration_number == 1:
+                model_config['split_embedding_layer'] = True
+            else:
+                model_config['split_embedding_layer'] = False
+            for i in range(1, 3):
                 model_config['configuration_repeat'] = i
                 bb.run_pipeline(model_config)
 
 
 if __name__ == '__main__':
-   check_hidden_layer_size_experiment()
-   check_input_size_experiment()
+    split_embedding_layer_experiment()
+    # check_hidden_layer_size_experiment()
+    # check_input_size_experiment()
+
 
 
 
